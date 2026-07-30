@@ -7,7 +7,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555;
+  color: #fff;
   opacity: 0.4;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -329,7 +329,7 @@
 
 .hero-tagline {
   font-size: clamp(0.85rem, 1.2vw, 1.05rem);
-  color: #555;
+  color: #fff;
   opacity: 0.65;
   margin-top: 0.75rem;
   letter-spacing: 0.04em;
@@ -512,7 +512,7 @@
   font-size: 6.5rem;
   font-weight: 700;
   line-height: 0.6;
-  color: #555;
+  color: #fff;
   opacity: 0.08;
   display: block;
   margin-bottom: 0.5rem;
@@ -521,7 +521,7 @@
 .about-quote-text {
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.9;
-  color: #555;
+  color: #fff;
   opacity: 0.65;
 }
 
@@ -534,7 +534,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555;
+  color: #fff;
   opacity: 0.4;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -551,7 +551,7 @@
   align-items: baseline;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: #555;
+  color: #fff;
   opacity: 0.65;
 }
 
@@ -714,8 +714,8 @@
 .showcase-project-number {
   font-size: 2.5rem;
   font-weight: 200;
-  color: #555;
-  opacity: 0.2;
+  color: #fff;
+  opacity: 0.25;
   line-height: 1;
   margin-bottom: 0.5rem;
 }
@@ -765,7 +765,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555;
+  color: #fff;
   opacity: 0.25;
 }
 
@@ -793,7 +793,7 @@
   border: 1px solid rgba(28, 28, 28, 0.15);
   background: rgba(222, 218, 212, 0.85);
   backdrop-filter: blur(8px);
-  color: #555;
+  color: #666;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -810,7 +810,7 @@
 .showcase-pill-active {
   background: #333;
   color: #dedad4;
-  border-color: #555;
+  border-color: #fff;
 }
 
 .showcase-pill-active:hover {
@@ -869,8 +869,8 @@
 .work-featured-number {
   font-size: 2.5rem;
   font-weight: 200;
-  color: #555;
-  opacity: 0.2;
+  color: #fff;
+  opacity: 0.25;
   line-height: 1;
 }
 
@@ -881,12 +881,12 @@
 }
 
 .work-featured-title {
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  margin: 0.25rem 0 0.5rem;
-  color: #dedad4;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0.25rem 0 0.75rem;
+  color: #fff;
 }
 
 .work-featured-details {
@@ -916,13 +916,13 @@
 .work-metric-value {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #555;
+  color: #fff;
   line-height: 1.0;
 }
 
 .work-metric-label {
   font-size: 0.65rem;
-  color: #555;
+  color: #fff;
   opacity: 0.5;
   letter-spacing: 0.05em;
 }
@@ -975,7 +975,7 @@
   grid-template-columns: 1fr 2fr;
   gap: 2.5rem;
   padding: 2rem;
-  background: #f7f4ee;
+  background: #1a1a1a;
   border-left: 2px solid transparent;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -994,7 +994,7 @@
 .work-card-number {
   font-size: 2.5rem;
   font-weight: 200;
-  color: #555;
+  color: #fff;
   opacity: 0.15;
   line-height: 1;
   margin-bottom: 1rem;
@@ -1007,11 +1007,13 @@
 }
 
 .work-tag {
-  font-size: 0.8rem;
-  padding: 0.25rem 0.6rem;
+  font-size: 0.7rem;
+  padding: 0.35rem 1rem;
   background: #333;
   color: #dedad4;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  font-weight: 500;
 }
 
 .work-card-title {
@@ -1020,6 +1022,7 @@
   line-height: 1.4;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
+  color: #dedad4;
 }
 
 .work-card-details {
@@ -1032,7 +1035,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555;
+  color: #fff;
   opacity: 0.3;
   font-weight: 500;
   display: block;
@@ -1042,7 +1045,7 @@
 .work-detail-text {
   font-size: 0.85rem;
   line-height: 1.6;
-  color: #555;
+  color: #fff;
   opacity: 0.7;
 }
 
@@ -1086,12 +1089,13 @@
 .works-slider-number {
   font-size: 2.5rem;
   font-weight: 200;
-  color: #555;
-  opacity: 0.2;
+  color: #fff;
+  opacity: 0.25;
   line-height: 1;
 }
 
 .works-slider-title {
+  color: #fff;
   font-size: clamp(1.1rem, 1.5vw, 1.35rem);
   font-weight: 500;
   line-height: 1.4;
@@ -1108,7 +1112,7 @@
 .works-slider-desc {
   font-size: 0.85rem;
   line-height: 1.6;
-  color: #555;
+  color: #fff;
   opacity: 0.65;
   max-width: 600px;
 }
@@ -1192,8 +1196,8 @@
 }
 
 .works-gallery-text { flex: 0 0 300px; text-align: left; }
-.works-gallery-number { font-size: 2.5rem; font-weight: 200; color: #1c1c1c; opacity: 0.2; line-height: 1; margin-bottom: 0.5rem; }
-.works-gallery-title { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.works-gallery-number { font-size: 2.5rem; font-weight: 200; color: #fff; opacity: 0.25; line-height: 1; margin-bottom: 0.5rem; }
+.works-gallery-title { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 0.5rem; color: #dedad4; }
 .works-gallery-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 1rem; }
 .works-gallery-details { display: flex; flex-direction: column; gap: 0.75rem; }
 .works-gallery-details .work-detail,
@@ -1241,7 +1245,7 @@
 
 .methodology-subtitle {
   font-size: 0.9rem;
-  color: #555;
+  color: #fff;
   opacity: 0.45;
 }
 
@@ -1262,7 +1266,7 @@
 .step-number {
   font-size: 3rem;
   font-weight: 200;
-  color: #555;
+  color: #fff;
   opacity: 0.1;
   line-height: 1;
   margin-bottom: 1rem;
@@ -1277,7 +1281,7 @@
 .step-desc {
   font-size: 0.8rem;
   line-height: 1.6;
-  color: #555;
+  color: #fff;
   opacity: 0.6;
 }
 
@@ -1344,7 +1348,7 @@
 .tl-period {
   font-size: 0.75rem;
   letter-spacing: 0.05em;
-  color: #555;
+  color: #fff;
   opacity: 0.35;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -1358,7 +1362,7 @@
 
 .tl-company {
   font-size: 0.85rem;
-  color: #555;
+  color: #fff;
   opacity: 0.5;
   margin-bottom: 1rem;
 }
@@ -1366,7 +1370,7 @@
 .tl-highlights {
   font-size: 0.85rem;
   line-height: 1.7;
-  color: #555;
+  color: #fff;
   opacity: 0.65;
   white-space: pre-line;
 }
@@ -1374,7 +1378,7 @@
 .tl-brands {
   margin-top: 0.75rem;
   font-size: 0.8rem;
-  color: #555;
+  color: #fff;
   opacity: 0.45;
   font-style: italic;
 }
@@ -1401,7 +1405,7 @@
 
 .hobbies-desc {
   font-size: 0.9rem;
-  color: #555;
+  color: #fff;
   opacity: 0.4;
 }
 
@@ -1420,7 +1424,7 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
-  color: #555;
+  color: #fff;
   opacity: 0.5;
 }
 
@@ -1532,7 +1536,7 @@
 
 .footer-back-top:hover {
   background: #111;
-  color: #555;
+  color: #fff;
   border-color: #dedad4;
 }
 

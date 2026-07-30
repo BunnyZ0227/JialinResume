@@ -23,14 +23,17 @@ export default function Works() {
       <article className="work-featured">
         <div className="work-featured-left">
           <div className="work-featured-number">02</div>
+          <p className="showcase-subtitle" style={{ marginBottom: '0.25rem' }}>
+            <BilingualText cn="环球影城  2025-2026" en="Universal Beijing Resort  2025-2026" />
+          </p>
+          <h3 className="work-featured-title">
+            <BilingualText cn="IP内容制作 · 社媒内容策划" en="IP Content Production · Social Media" />
+          </h3>
           <div className="work-featured-tags">
             {secondWork.tags.map((tag, i) => (
               <span key={i} className="work-tag">{tag}</span>
             ))}
           </div>
-          <h3 className="work-featured-title">
-            <BilingualText cn={secondWork.title.cn} en={secondWork.title.en} />
-          </h3>
           <div className="work-featured-details">
             <div className="work-detail">
               <span className="work-detail-label">Challenge</span>

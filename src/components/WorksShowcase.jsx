@@ -4,20 +4,20 @@ import BilingualText from './BilingualText'
 
 // 2x largest overflow top, smallest near text, medium mid/bottom
 // Burst: center-small first → medium → 2x edge last
-const videoList = ['01.mp4', '1017没有记忆点.mp4', 'Promote Pilot Project-2.mp4', 'Promote Pilot Project-5.mp4', 'TTM M6W4语音房一.mp4', '咖啡机工厂-竖-6951529396331087874.mp4', '电风扇-竖-6951530078991812609.mp4', '豆包-大学综合.mp4', '豆包品宣-竖.mp4', '防晒-竖-6951609476247996418.mp4']
+const videoList = ['01.mp4', '1017没有记忆点.mp4', 'Promote Pilot Project-2.mp4', 'Promote Pilot Project-5.mp4', 'TTM M6W4语音房一.mp4', '咖啡机工厂-竖-6951529396331087874.mp4', 'Meta-9-16-15s.mp4', '豆包-大学综合.mp4', '豆包品宣-竖.mp4', '防晒-竖-6951609476247996418.mp4']
 
 const cardDefs = [
   // Smallest (2) — nearest to center text, burst first
-  { top: '54%', left: '18%',  w: '88px', h: '135px', scale: 0.82, delay: 0.00 },
-  { top: '54%', right: '28%', w: '85px', h: '132px', scale: 0.80, delay: 0.15 },
+  { top: '54%', left: '15%',  w: '110px', h: '165px', scale: 0.98, delay: 0.00 },
+  { top: '54%', right: '28%', w: '100px', h: '150px', scale: 0.90, delay: 0.15 },
   // Medium (2) — mid distance on sides
-  { top: '44%', left: '1%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
-  { top: '34%', right: '18%', w: '126px', h: '200px', scale: 1.02, delay: 0.72 },
+  { top: '50%', left: '1%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
+  { top: '28%', right: '18%', w: '140px', h: '220px', scale: 1.08, delay: 0.72 },
   // Medium-bottom (2) — lower zone
-  { bottom: '10%', left: '24%',  w: '102px', h: '155px', scale: 0.90, delay: 0.52 },
-  { bottom: '8%', right: '7%',  w: '140px', h: '215px', scale: 0.98, delay: 0.72 },
+  { bottom: '10%', left: '27%',  w: '115px', h: '175px', scale: 0.95, delay: 0.52 },
+  { bottom: '8%', right: '7%',  w: '155px', h: '235px', scale: 1.05, delay: 0.72 },
   // Medium-small above text — top zone, staggered vertically
-  { top: '18%', left: '31%',  w: '100px', h: '155px', scale: 0.88, delay: 0.15 },
+  { top: '18%', left: '31%',  w: '115px', h: '175px', scale: 0.95, delay: 0.15 },
   { top: '7%', right: '34%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
   // 2x Largest (2) — overflow top edge, burst last
   { top: '0%',  left: '12%', w: '220px', h: '360px', scale: 1.0, delay: 0.72 },
@@ -26,7 +26,7 @@ const cardDefs = [
 
 const pillLabels = ['PROJECT', 'CHALLENGE', 'APPROACH', 'IMPACT']
 
-function VideoCard({ style, naturalScale, delay, videoSrc, onClick }) {
+function VideoCard({ style, naturalScale, delay, videoSrc, onClick, offsetX, offsetY, hasAnimated }) {
   const ref = useRef(null)
 
   function handleMouseMove(e) {
@@ -49,8 +49,8 @@ function VideoCard({ style, naturalScale, delay, videoSrc, onClick }) {
       ref={ref}
       className="showcase-video-card"
       style={style}
-      initial={{ scale: 0, opacity: 0, filter: 'blur(6px)' }}
-      animate={{ scale: naturalScale, opacity: 1, filter: 'blur(0px)' }}
+      initial={{ x: offsetX, y: offsetY, scale: 0, opacity: 0, filter: 'blur(8px)' }}
+      animate={{ x: 0, y: 0, scale: naturalScale, opacity: 1, filter: 'blur(0px)' }}
       transition={{ delay, duration: 0.65, ease: 'easeOut' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -71,11 +71,35 @@ function VideoCard({ style, naturalScale, delay, videoSrc, onClick }) {
 export default function WorksShowcase({ work }) {
   const [phase, setPhase] = useState(0)
   const [activeVideo, setActiveVideo] = useState(null)
+  const [sectionDims, setSectionDims] = useState({ w: 1440, h: 900 })
+  const sectionRef = useRef(null)
+  const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => { setPhase(p => (p + 1) % 4) }, 8000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const update = () => setSectionDims({ w: el.offsetWidth, h: el.offsetHeight })
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || hasAnimated) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setHasAnimated(true) },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [hasAnimated])
 
   const phaseContent = [
     <div key="project" className="showcase-phase-inner">
@@ -109,15 +133,37 @@ export default function WorksShowcase({ work }) {
   ]
 
   return (
-    <section className="works-showcase">
+    <section ref={sectionRef} className="works-showcase">
       <div className="showcase-cards-layer">
-        {cardDefs.map((card, i) => (
+        {cardDefs.map((card, i) => {
+            const { w: sw, h: sh } = sectionDims
+            const cw = parseFloat(card.w) * card.scale
+            const ch = parseFloat(card.h) * card.scale
+            const cx = sw / 2
+            const cy = sh / 2
+            let cardCX, cardCY
+            if (card.left) {
+              cardCX = (parseFloat(card.left) / 100) * sw + cw / 2
+            } else {
+              cardCX = sw - (parseFloat(card.right) / 100) * sw - cw / 2
+            }
+            if (card.top) {
+              cardCY = (parseFloat(card.top) / 100) * sh + ch / 2
+            } else {
+              cardCY = sh - (parseFloat(card.bottom) / 100) * sh - ch / 2
+            }
+            const offX = Math.round(cx - cardCX)
+            const offY = Math.round(cy - cardCY)
+            return (
           <VideoCard
-            key={i}
+            key={`${i}-${hasAnimated}`}
             delay={card.delay}
             naturalScale={card.scale}
             videoSrc={videoList[i]}
             onClick={() => setActiveVideo(i)}
+            offsetX={offX}
+            offsetY={offY}
+            hasAnimated={hasAnimated}
             style={{
               position: 'absolute',
               top: card.top,
@@ -128,7 +174,8 @@ export default function WorksShowcase({ work }) {
               height: card.h,
             }}
           />
-        ))}
+            )
+          })}
       </div>
 
       <div className="showcase-text-center">
