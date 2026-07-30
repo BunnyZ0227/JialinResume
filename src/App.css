@@ -27,7 +27,7 @@
 
 .bb-en {
   position: absolute;
-  top: 1rem;
+  top: 0;
   left: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -67,7 +67,7 @@
 /* NAVBAR — Liquid Glass Style */
 .navbar {
   position: fixed;
-  top: 1rem;
+  top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -153,7 +153,7 @@
   display: none;
   flex-direction: column;
   gap: 5px;
-  width: 24px;
+  width: 18px;
   padding: 4px 0;
   z-index: 1001;
 }
@@ -497,7 +497,7 @@
 
 .about-quote-block {
   margin-left: -5rem;
-  margin-top: 1rem;
+  margin-top: 0;
   padding-left: 0;
   padding-top: 3rem;
   position: relative;
@@ -511,7 +511,7 @@
   color: #7a7068;
   opacity: 0.06;
   position: absolute;
-  top: 1rem;
+  top: 0;
   left: -2rem;
   z-index: 0;
   pointer-events: none;
@@ -528,8 +528,8 @@
 
 .about-education {
   margin-bottom: 2rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: 0;
+  padding-top: 0;
   width: 100%;
 }
 
@@ -677,7 +677,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #222 0%, #333 100%);
+  background: linear-gradient(135deg, #ccc 0%, #ddd 100%);
   border-radius: 10px;
 }
 
@@ -691,7 +691,7 @@
   position: relative;
   z-index: 20;
   text-align: center;
-  max-width: 780px;
+  max-width: 1100px;
   padding: 2rem 2.5rem;
 }
 
@@ -705,7 +705,7 @@
 }
 
 .showcase-fixed-number {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 200;
   color: #fff;
   opacity: 0.3;
@@ -715,7 +715,7 @@
 }
 
 .showcase-project-number {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 200;
   color: #fff;
   opacity: 0.25;
@@ -742,7 +742,7 @@
 .showcase-phase-label {
   color: #fff;
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -765,7 +765,7 @@
   align-items: center;
   gap: 0.75rem;
   margin-top: 2.5rem;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;
@@ -774,7 +774,7 @@
 
 .showcase-hint-line {
   display: block;
-  width: 24px;
+  width: 18px;
   height: 1px;
   background: #333;
 }
@@ -797,7 +797,7 @@
   background: rgba(222, 218, 212, 0.85);
   backdrop-filter: blur(8px);
   color: #666;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   cursor: pointer;
@@ -870,7 +870,7 @@
 }
 
 .work-featured-number {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 200;
   color: #fff;
   opacity: 0.25;
@@ -901,7 +901,7 @@
 .work-featured-metrics {
   display: flex;
   gap: 0.4rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   flex-wrap: nowrap;
   width: 100%;
 }
@@ -910,7 +910,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
+  background: transparent;
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
   flex: 1;
@@ -943,7 +943,7 @@
   aspect-ratio: 16 / 9;
   max-height: 560px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #222 0%, #333 100%);
+  background: linear-gradient(135deg, #ccc 0%, #ddd 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -995,7 +995,7 @@
 }
 
 .work-card-number {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 200;
   color: #fff;
   opacity: 0.15;
@@ -1010,7 +1010,7 @@
 }
 
 .work-tag {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   padding: 0.35rem 1rem;
   background: #333;
   color: #dedad4;
@@ -1070,7 +1070,7 @@
 }
 
 .works-slider-text {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto 2.5rem;
   padding: 0 3rem;
   text-align: center;
@@ -1090,7 +1090,7 @@
 }
 
 .works-slider-number {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 200;
   color: #fff;
   opacity: 0.25;
@@ -1099,10 +1099,10 @@
 
 .works-slider-title {
   color: #fff;
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .works-slider-tags {
@@ -1125,7 +1125,7 @@
   flex-direction: column;
   gap: 0.75rem;
   margin-top: 0.5rem;
-  max-width: 640px;
+  max-width: 1100px;
 }
 
 .works-slider-details .work-detail {
@@ -1146,9 +1146,9 @@
 }
 
 .works-slider-card {
-  flex: 0 0 420px;
+  flex: 0 0 600px;
   scroll-snap-align: center;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
@@ -1173,7 +1173,7 @@
     padding: 1rem 1rem;
   }
   .works-slider-card {
-    flex: 0 0 320px;
+    flex: 0 0 500px;
   }
 }
 
@@ -1198,8 +1198,8 @@
   cursor: pointer;
 }
 
-.works-gallery-text { flex: 0 0 300px; text-align: left; }
-.works-gallery-number { font-size: 2.5rem; font-weight: 200; color: #fff; opacity: 0.25; line-height: 1; margin-bottom: 2rem; }
+.works-gallery-text { flex: 0 0 600px; text-align: left; }
+.works-gallery-number { font-size: 3.2rem; font-weight: 200; color: #fff; opacity: 0.25; line-height: 1; margin-bottom: 2rem; }
 .works-gallery-title { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 2rem; color: #dedad4; }
 .works-gallery-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 1rem; }
 .works-gallery-details { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -1214,19 +1214,20 @@
 
 @media (max-width: 1200px) {
   .works-gallery { padding: 3rem 2rem 3rem 4rem; gap: 2rem; }
-  .works-gallery-text { flex: 0 0 260px; }
-  .works-gallery-card { flex: 0 0 160px; }
+  .works-gallery-text { flex: 0 0 600px; }
+  .works-gallery-card { width: 200px; flex-shrink: 0; }
 }
 @media (max-width: 900px) {
   .works-gallery { padding: 3rem 1.5rem; gap: 1.5rem; }
-  .works-gallery-text { flex: 0 0 240px; }
-  .works-gallery-card { flex: 0 0 140px; }
+  .works-gallery-text { flex: 0 0 50%; }
+  .works-gallery-card { width: 180px; flex-shrink: 0; }
 }
 @media (max-width: 768px) {
   .works-gallery { flex-direction: column; padding: 3rem 1.5rem; gap: 2rem; }
+.works-gallery-video-card { width: 220px; height: 391px; background: linear-gradient(135deg, #ccc 0%, #ddd 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+.works-gallery-card { position: absolute; width: 220px; height: 391px; border-radius: 15px; overflow: hidden; cursor: pointer; }
   .works-gallery-text { flex: none; width: 100%; }
-  .works-gallery-track { max-height: 50vh; }
-  .works-gallery-card { flex: 0 0 130px; }
+  
 }
 /* METHODOLOGY */
 .methodology {

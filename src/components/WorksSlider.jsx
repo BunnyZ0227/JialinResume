@@ -7,30 +7,36 @@ export default function WorksSlider({ work }) {
   const [activeIndex, setActiveIndex] = useState(2)
   const videoCount = 4
 
+  // Auto-advance every 4s
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % videoCount)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Center the active card when activeIndex changes
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
-    const cardW = el.querySelector('.works-slider-card')?.offsetWidth || 420
+    const cardW = 600
     const gap = 12
-    el.scrollLeft = 2 * cardW + 2 * gap
+    el.scrollTo({ left: activeIndex * (cardW + gap), behavior: 'smooth' })
+  }, [activeIndex])
 
-    function handleScroll() {
-      const containerWidth = el.clientWidth
-      const scrollLeft = el.scrollLeft
-      const cardWidth = containerWidth / 3
-      const index = Math.round(scrollLeft / cardWidth)
-      setActiveIndex(Math.min(Math.max(index, 0), videoCount - 1))
-    }
-
-    el.addEventListener('scroll', handleScroll, { passive: true })
-    return () => el.removeEventListener('scroll', handleScroll)
-  }, [])
+  // Click to center
+  function handleCardClick(index) {
+    setActiveIndex(index)
+  }
 
   return (
     <div className="works-slider-wrapper">
       <div className="works-slider-text">
         <div className="works-slider-project active">
           <div className="works-slider-number">03</div>
+          <p className="showcase-subtitle" style={{marginBottom:'0.25rem'}}>
+            <BilingualText cn="飞鹤奶酪  2023-2025" en="Feihe Cheese  2023-2025" />
+          </p>
           <h3 className="works-slider-title">
             <BilingualText cn={work.title.cn} en={work.title.en} />
           </h3>
@@ -59,10 +65,16 @@ export default function WorksSlider({ work }) {
           <motion.div
             key={i}
             className={`works-slider-card ${activeIndex === i ? 'active' : ''}`}
-            animate={{ scale: activeIndex === i ? 1.06 : 0.94, opacity: activeIndex === i ? 1 : 0.5 }}
+            animate={{
+              scale: activeIndex === i ? 1.06 : 0.94,
+              opacity: activeIndex === i ? 1 : 0.5,
+            }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            onClick={() => handleCardClick(i)}
           >
-            <div className="works-slider-video"><span className="works-slider-play">▶</span></div>
+            <div className="works-slider-video">
+              <span className="works-slider-play">▶</span>
+            </div>
           </motion.div>
         ))}
       </div>

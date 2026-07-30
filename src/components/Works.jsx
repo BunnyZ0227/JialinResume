@@ -56,8 +56,8 @@ export default function Works() {
           <div className="work-featured-metrics">
             {secondWork.metrics.cn.map((m, i) => (
               <div key={i} className="work-metric-block">
-                <span className="work-metric-value"><AnimatedCounter value={m.value} /></span>
-                <span className="work-metric-label">{m.label}</span>
+                <span className="work-metric-value" style={{fontSize:"1.8rem"}}><AnimatedCounter value={m.value} /></span>
+                <span className="work-metric-label" style={{fontSize:"0.8rem"}}>{m.label}</span>
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ export default function Works() {
         {restWorks.map((work) => (
           <article key={work.id} className="work-card">
             <div className="work-card-visual">
-              <div className="work-card-number">0{[4, 6][restWorks.indexOf(work)]}</div>
+              <div className="work-card-number">0{[5, 6][restWorks.indexOf(work)]}</div>
               <div className="work-card-tags">
                 {work.tags.map((tag, i) => (
                   <span key={i} className="work-tag">{tag}</span>

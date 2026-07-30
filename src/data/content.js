@@ -56,7 +56,7 @@ export const works = [
       en: ['Not just a creative vendor, but an "external creative brain" for ByteDance product teams.', 'Built a sustainable content strategy SOP: Deep research → Three-tier strategy → Monthly A/B testing → Weekly data review and optimization.']
     },
     impact: {
-      cn: ['US地区多条素材效果达投放效果均值70x。年均管理5万+', '素材交付，5家素材供应商，创作内容覆盖短视频、AIGC、', '动效、2D/3D动画、短剧等。'],
+      cn: ['为60+国家提供本地化调研，其中US地区多条素材效果达投放效果均值70x。', '年均管理5万+素材交付，5家素材供应商，创作内容覆盖短视频、AIGC、', '动效、2D/3D动画、短剧等。'],
       en: ['Multiple US market creatives achieved 70x platform average performance.', 'Managed 50,000+ annual asset deliveries across 5 creative suppliers, covering short videos, AIGC, motion graphics, 2D/3D animation, short dramas, and more.']
     }
   },
@@ -117,7 +117,7 @@ export const works = [
   },
   {
     id: 'adidas',
-    title: { cn: '社交话题营销 · 阿迪达斯 2025', en: 'Social Campaign · adidas 2025' },
+    title: { cn: '艺人社交话题营销 · 半马练习生', en: 'Celebrity Social Campaign · Half Marathon Trainee' },
     tags: ['明星合作', '社交营销', '极限周期'],
     challenge: {
       cn: '阿迪达斯需要在5周极限周期内完成明星社交campaign：从创意策划到明星拍摄到最终交付。业内标准周期8-12周。',
@@ -130,6 +130,10 @@ export const works = [
     impact: {
       cn: '点赞3472 / 转发1244 / 推荐收藏747 / 评论216',
       en: '3,472 likes / 1,244 shares / 747 saves / 216 comments'
+    },
+    metrics: {
+      cn: [{ label: '点赞', value: '3472' }, { label: '转发', value: '1244' }, { label: '推荐收藏', value: '747' }, { label: '评论', value: '216' }],
+      en: [{ label: 'Likes', value: '3472' }, { label: 'Shares', value: '1244' }, { label: 'Saves', value: '747' }, { label: 'Comments', value: '216' }]
     }
   },
   {

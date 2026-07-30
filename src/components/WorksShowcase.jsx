@@ -17,7 +17,7 @@ const cardDefs = [
   { bottom: '10%', left: '27%',  w: '115px', h: '175px', scale: 0.95, delay: 0.52 },
   { bottom: '8%', right: '7%',  w: '155px', h: '235px', scale: 1.05, delay: 0.72 },
   // Medium-small above text — top zone, staggered vertically
-  { top: '18%', left: '31%',  w: '115px', h: '175px', scale: 0.95, delay: 0.15 },
+  { top: '26%', left: '31%',  w: '115px', h: '175px', scale: 0.95, delay: 0.15 },
   { top: '7%', right: '34%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
   // 2x Largest (2) — overflow top edge, burst last
   { top: '0%',  left: '12%', w: '220px', h: '360px', scale: 1.0, delay: 0.72 },
