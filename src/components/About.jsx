@@ -13,7 +13,7 @@ export default function About() {
       <div className="about-inner">
         <div className="about-left">
           <div className="about-quote-block">
-            <span className="about-quote-mark">“</span>
+            <span className="about-quote-mark">"</span>
             <p className="about-quote-text">
               <BilingualText cn={aboutContent.intro.cn} en={aboutContent.intro.en} as="span" />
             </p>

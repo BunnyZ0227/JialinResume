@@ -34,7 +34,7 @@ export const aboutContent = {
 为品牌提供消费者洞察 → 内容策略 → 营销物料全链路制作服务。
 我的景观及城市规划跨学科背景，赋予了我结构化拆解、理性逻辑思维能力。
 现居北京，希望寻找一个能够贡献我的专业能力并创造积极影响力的团队。`,
-    en: `I'm Ally, a Creative Strategist with 8 years in advertising and media.   I lead cross-functional teams to deliver end-to-end solutions—from consumer insights to production.   My architecture background equips me with structured logic and a rational approach.   Based in Beijing,  I'm currently seeking a team where I can apply this expertise to create meaningful impact`
+    en: `My name is Ally. I'm a Creative Strategist with 8 years of experience in the advertising and media industry, crafting thoughtful, client-centric solutions that balance strategy with creativity. With a focus on strategic thinking, I excel at guiding cross-functional teams through content iteration, delivering full-funnel services from consumer insights to content strategy to marketing materials production. My background in landscape architecture and urban planning has given me a structured approach to problem-solving and a strong sense of rational logic. Based in Beijing, I'm seeking a team where I can bring my expertise and drive meaningful impact.`
   },
   education: [
     { cn: '硕士 · 谢菲尔德大学 (QS82) · 2021-2022 · 建筑学院 · 城市设计专业', en: 'M.A. Urban Design · University of Sheffield (QS #82) · 2021-2022' },

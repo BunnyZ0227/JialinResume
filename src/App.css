@@ -27,7 +27,7 @@
 
 .bb-en {
   position: absolute;
-  top: 0;
+  top: 1rem;
   left: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -67,7 +67,7 @@
 /* NAVBAR — Liquid Glass Style */
 .navbar {
   position: fixed;
-  top: 0;
+  top: 1rem;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -253,7 +253,7 @@
 .hero-text { max-width: 80%; }
 
 .hero-byname {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #dedad4;
@@ -413,6 +413,8 @@
   z-index: 10;
   margin-top: -2rem;
   margin-left: max(0px, calc(50vw - 790px));
+  color: #333;
+  opacity: 0.5;
 }
 
 .about-first-letter {
@@ -463,26 +465,17 @@
 /* ABOUT */
 .about {
   position: relative;
-  z-index: 6;
+  z-index: 8;
   background-color: #f8f4ef;
   padding: 4rem 3rem 6rem;
   scroll-margin-top: 4rem;
 }
 
-.about::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url(/images/paper-noise.svg);
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  pointer-events: none;
-  z-index: 5;
-}
 
 .about-inner {
   position: relative;
   z-index: 10;
+  background: #f8f4ef;
   max-width: 1280px;
   margin: -2rem auto 0;
   display: flex;
@@ -504,29 +497,39 @@
 
 .about-quote-block {
   margin-left: -5rem;
+  margin-top: 1rem;
   padding-left: 0;
+  padding-top: 3rem;
+  position: relative;
 }
 
 .about-quote-mark {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  font-size: 6.5rem;
+  font-size: 10rem;
   font-weight: 700;
-  line-height: 0.6;
-  color: #fff;
-  opacity: 0.08;
-  display: block;
-  margin-bottom: 0.5rem;
+  line-height: 0.5;
+  color: #7a7068;
+  opacity: 0.06;
+  position: absolute;
+  top: 1rem;
+  left: -2rem;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .about-quote-text {
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.9;
-  color: #fff;
-  opacity: 0.65;
+  color: #7a7068;
+  opacity: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .about-education {
   margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   width: 100%;
 }
 
@@ -534,8 +537,8 @@
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
-  opacity: 0.4;
+  color: #7a7068;
+  opacity: 0.5;
   margin-bottom: 1rem;
   font-weight: 500;
 }
@@ -550,9 +553,9 @@
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  font-size: 0.85rem;
-  color: #fff;
-  opacity: 0.65;
+  font-size: 1.1rem;
+  color: #7a7068;
+  opacity: 1;
 }
 
 
@@ -561,7 +564,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #333;
+  background: #1c1c1c;
   flex-shrink: 0;
   margin-top: 0.4rem;
 }
@@ -612,7 +615,7 @@
 .cn-skill { font-family: 'Noto Serif SC', serif; font-style: italic; }
 .en-skill { font-family: 'Playfair Display', serif; font-style: italic; text-transform: none; letter-spacing: 0.02em; }
 .skills-slash { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: #1c1c1c; opacity: 0.35; padding: 0 0.15rem; }
-.skills-marquee .parallax { font-size: 0.85rem; }
+.skills-marquee .parallax { font-size: 1.1rem; }
 .skills-marquee .parallax section { display: flex; gap: 1.5rem; }
 
 /* Expanded video overlay */
@@ -653,7 +656,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 6;
+  z-index: 8;
 }
 
 .showcase-cards-layer > * {
@@ -707,7 +710,7 @@
   color: #fff;
   opacity: 0.3;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -717,7 +720,7 @@
   color: #fff;
   opacity: 0.25;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .showcase-main-title {
@@ -907,9 +910,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(28, 28, 28, 0.06);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.75rem;
   flex: 1;
 }
 
@@ -1043,7 +1046,7 @@
 }
 
 .work-detail-text {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #fff;
   opacity: 0.7;
@@ -1110,7 +1113,7 @@
 }
 
 .works-slider-desc {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #fff;
   opacity: 0.65;
@@ -1196,8 +1199,8 @@
 }
 
 .works-gallery-text { flex: 0 0 300px; text-align: left; }
-.works-gallery-number { font-size: 2.5rem; font-weight: 200; color: #fff; opacity: 0.25; line-height: 1; margin-bottom: 0.5rem; }
-.works-gallery-title { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 0.5rem; color: #dedad4; }
+.works-gallery-number { font-size: 2.5rem; font-weight: 200; color: #fff; opacity: 0.25; line-height: 1; margin-bottom: 2rem; }
+.works-gallery-title { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 2rem; color: #dedad4; }
 .works-gallery-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 1rem; }
 .works-gallery-details { display: flex; flex-direction: column; gap: 0.75rem; }
 .works-gallery-details .work-detail,
@@ -1240,7 +1243,7 @@
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .methodology-subtitle {
@@ -1275,7 +1278,7 @@
 .step-title {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .step-desc {
@@ -1346,11 +1349,11 @@
 }
 
 .tl-period {
-  font-size: 0.75rem;
+  font-size: 1.1rem;
   letter-spacing: 0.05em;
   color: #fff;
   opacity: 0.35;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   font-weight: 500;
 }
 
@@ -1361,14 +1364,14 @@
 }
 
 .tl-company {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: #fff;
   opacity: 0.5;
   margin-bottom: 1rem;
 }
 
 .tl-highlights {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: #fff;
   opacity: 0.65;
@@ -1399,7 +1402,7 @@
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   color: #dedad4;
 }
 
@@ -1420,7 +1423,7 @@
 }
 
 .hobby-category-label {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
@@ -1499,7 +1502,7 @@
   font-weight: 500;
   color: #dedad4;
   transition: opacity 0.2s;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .footer-email:hover {
@@ -1508,7 +1511,7 @@
 
 .footer-phone {
   display: block;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   opacity: 0.5;
   letter-spacing: 0.05em;
 }
@@ -1541,7 +1544,7 @@
 }
 
 .footer-copy {
-  font-size: 0.75rem;
+  font-size: 1.1rem;
   opacity: 0.3;
   letter-spacing: 0.05em;
 }
