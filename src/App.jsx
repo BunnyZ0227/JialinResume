@@ -14,6 +14,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <div className="tear-paper-container">
+          <img className="tear-paper" src="/images/tear-paper.png" alt="" loading="lazy" />
+        </div>
         <About />
         <Works />
         <Methodology />
