@@ -45,7 +45,7 @@ export const aboutContent = {
 export const works = [
   {
     id: 'bytedance',
-    title: { cn: '全球化消费者洞察与内容策略 · 字节跳动 2018—至今', en: 'Global Consumer Insight & Content Strategy · ByteDance 2018-Present' },
+    title: { cn: '全球化用户洞察与内容策略 · 字节跳动 2018—至今', en: 'Global Consumer Insight & Content Strategy · ByteDance 2018-Present' },
     tags: ['内容策略', 'A/B测试', '全球化'],
     challenge: {
       cn: ['字节跳动全球业务极速扩张，产品矩阵覆盖东南亚、北美、', '中东等文化迥异的市场。传统"一套素材打全球"模式', '既跟不上产品送代速度，也无法真正打动本地用户。'],

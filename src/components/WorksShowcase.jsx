@@ -8,25 +8,25 @@ const videoList = ['01.mp4', '1017没有记忆点.mp4', 'Promote Pilot Project-2
 
 const cardDefs = [
   // Smallest (2) — nearest to center text, burst first
-  { top: '54%', left: '22%',  w: '88px', h: '135px', scale: 0.82, delay: 0.00 },
-  { top: '54%', right: '24%', w: '85px', h: '132px', scale: 0.80, delay: 0.15 },
+  { top: '54%', left: '18%',  w: '88px', h: '135px', scale: 0.82, delay: 0.00 },
+  { top: '54%', right: '28%', w: '85px', h: '132px', scale: 0.80, delay: 0.15 },
   // Medium (2) — mid distance on sides
-  { top: '44%', left: '5%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
-  { top: '34%', right: '14%', w: '126px', h: '200px', scale: 1.02, delay: 0.72 },
+  { top: '44%', left: '1%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
+  { top: '34%', right: '18%', w: '126px', h: '200px', scale: 1.02, delay: 0.72 },
   // Medium-bottom (2) — lower zone
-  { bottom: '10%', left: '28%',  w: '102px', h: '155px', scale: 0.90, delay: 0.52 },
-  { bottom: '8%', right: '3%',  w: '140px', h: '215px', scale: 0.98, delay: 0.72 },
+  { bottom: '10%', left: '24%',  w: '102px', h: '155px', scale: 0.90, delay: 0.52 },
+  { bottom: '8%', right: '7%',  w: '140px', h: '215px', scale: 0.98, delay: 0.72 },
   // Medium-small above text — top zone, staggered vertically
-  { top: '18%', left: '35%',  w: '100px', h: '155px', scale: 0.88, delay: 0.15 },
-  { top: '7%', right: '30%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
+  { top: '18%', left: '31%',  w: '100px', h: '155px', scale: 0.88, delay: 0.15 },
+  { top: '7%', right: '34%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
   // 2x Largest (2) — overflow top edge, burst last
-  { top: '-8%',  left: '16%', w: '220px', h: '360px', scale: 1.0, delay: 0.72 },
-  { top: '-6%',  right: '-4%', w: '215px', h: '350px', scale: 1.0, delay: 0.82 },
+  { top: '0%',  left: '12%', w: '220px', h: '360px', scale: 1.0, delay: 0.72 },
+  { top: '2%',  right: '-4%', w: '215px', h: '350px', scale: 1.0, delay: 0.82 },
 ]
 
 const pillLabels = ['PROJECT', 'CHALLENGE', 'APPROACH', 'IMPACT']
 
-function VideoCard({ style, naturalScale, delay, videoSrc }) {
+function VideoCard({ style, naturalScale, delay, videoSrc, onClick }) {
   const ref = useRef(null)
 
   function handleMouseMove(e) {
@@ -54,6 +54,7 @@ function VideoCard({ style, naturalScale, delay, videoSrc }) {
       transition={{ delay, duration: 0.65, ease: 'easeOut' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       <video
         src={`/videos/bytedance/${videoSrc}`}
@@ -61,7 +62,7 @@ function VideoCard({ style, naturalScale, delay, videoSrc }) {
         loop
         muted
         playsInline
-        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', cursor: 'pointer' }}
       />
     </motion.div>
   )
@@ -69,6 +70,7 @@ function VideoCard({ style, naturalScale, delay, videoSrc }) {
 
 export default function WorksShowcase({ work }) {
   const [phase, setPhase] = useState(0)
+  const [activeVideo, setActiveVideo] = useState(null)
 
   useEffect(() => {
     const timer = setInterval(() => { setPhase(p => (p + 1) % 4) }, 8000)
@@ -78,7 +80,7 @@ export default function WorksShowcase({ work }) {
   const phaseContent = [
     <div key="project" className="showcase-phase-inner">
       <h2 className="showcase-main-title">
-        <BilingualText cn="全球化消费者洞察" en="Global Consumer Insight" />
+        <BilingualText cn="全球化用户洞察" en="Global Consumer Insight" />
         <br />
         <BilingualText cn="与内容策略" en="& Content Strategy" />
       </h2>
@@ -115,6 +117,7 @@ export default function WorksShowcase({ work }) {
             delay={card.delay}
             naturalScale={card.scale}
             videoSrc={videoList[i]}
+            onClick={() => setActiveVideo(i)}
             style={{
               position: 'absolute',
               top: card.top,
@@ -154,6 +157,23 @@ export default function WorksShowcase({ work }) {
           </button>
         ))}
       </div>
+
+      {/* Expanded video overlay */}
+      {activeVideo !== null && (
+        <div className="showcase-expand-backdrop" onClick={() => setActiveVideo(null)}>
+          <div className="showcase-expand-video" onClick={(e) => e.stopPropagation()}>
+            <video
+              src={`/videos/bytedance/${videoList[activeVideo]}`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
