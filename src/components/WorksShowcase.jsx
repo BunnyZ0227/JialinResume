@@ -4,24 +4,30 @@ import BilingualText from './BilingualText'
 
 // 2x largest overflow top, smallest near text, medium mid/bottom
 // Burst: center-small first → medium → 2x edge last
-const videoList = ['01.mp4', '1017没有记忆点.mp4', 'Promote Pilot Project-2.mp4', 'Promote Pilot Project-5.mp4', 'TTM M6W4语音房一.mp4', '咖啡机工厂-竖-6951529396331087874.mp4', 'Meta-9-16-15s.mp4', '豆包-大学综合.mp4', '豆包品宣-竖.mp4', '防晒-竖-6951609476247996418.mp4']
+const showcaseVideos = [
+  { preview: '/videos/bytedance/preview/0.mp4', polyv: 'g7c16240b12085db9be5b5aa95cbf95b_g' },
+  { preview: '/videos/bytedance/preview/1.mp4', polyv: 'g7c16240b1ca04f85e0c99960c3ee66c_g' },
+  { preview: '/videos/bytedance/preview/2.mp4', polyv: 'g7c16240b13d25cf2823cf71c061e557_g' },
+  { preview: '/videos/bytedance/preview/3.mp4', polyv: 'g7c16240b1cdd430232ebfda95b8f5a5_g' },
+  { preview: '/videos/bytedance/preview/4.mp4', polyv: 'g7c16240b117774c25fe94aae4e4c557_g' },
+  { preview: '/videos/bytedance/preview/5.mp4', polyv: 'g7c16240b180fd86dc2239f6ff0fe4a6_g' },
+  { preview: '/videos/bytedance/preview/6.mp4', polyv: 'g7c16240b134b11364a85e1a6b93fa24_g' },
+  { preview: '/videos/bytedance/preview/7.mp4', polyv: 'g7c16240b1f33a19203589bab8ec4c49_g' },
+  { preview: '/videos/bytedance/preview/8.mp4', polyv: 'g7c16240b1c968ce32847c6dd0aac271_g' },
+  { preview: '/videos/bytedance/preview/9.mp4', polyv: 'g7c16240b1cd6c5d067d72b42c1662c4_g' },
+]
 
 const cardDefs = [
-  // Smallest (2) — nearest to center text, burst first
-  { top: '54%', left: '15%',  w: '110px', h: '165px', scale: 0.98, delay: 0.00 },
-  { top: '54%', right: '28%', w: '100px', h: '150px', scale: 0.90, delay: 0.15 },
-  // Medium (2) — mid distance on sides
-  { top: '50%', left: '1%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
-  { top: '28%', right: '18%', w: '140px', h: '220px', scale: 1.08, delay: 0.72 },
-  // Medium-bottom (2) — lower zone
-  { bottom: '10%', left: '27%',  w: '115px', h: '175px', scale: 0.95, delay: 0.52 },
-  { bottom: '8%', right: '7%',  w: '155px', h: '235px', scale: 1.05, delay: 0.72 },
-  // Medium-small above text — top zone, staggered vertically
-  { top: '26%', left: '31%',  w: '115px', h: '175px', scale: 0.95, delay: 0.15 },
-  { top: '7%', right: '34%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
-  // 2x Largest (2) — overflow top edge, burst last
   { top: '0%',  left: '12%', w: '220px', h: '360px', scale: 1.0, delay: 0.72 },
+  { bottom: '8%', right: '7%',  w: '155px', h: '235px', scale: 1.05, delay: 0.72 },
+  { top: '28%', right: '18%', w: '140px', h: '220px', scale: 1.08, delay: 0.72 },
+  { top: '7%', right: '34%', w: '128px', h: '195px', scale: 0.96, delay: 0.12 },
+  { bottom: '10%', left: '27%',  w: '115px', h: '175px', scale: 0.95, delay: 0.52 },
+  { top: '26%', left: '31%',  w: '115px', h: '175px', scale: 0.95, delay: 0.15 },
   { top: '2%',  right: '-4%', w: '215px', h: '350px', scale: 1.0, delay: 0.82 },
+  { top: '54%', right: '28%', w: '100px', h: '150px', scale: 0.90, delay: 0.15 },
+  { top: '54%', left: '15%',  w: '110px', h: '165px', scale: 0.98, delay: 0.00 },
+  { top: '50%', left: '1%',   w: '152px', h: '240px', scale: 1.05, delay: 0.32 },
 ]
 
 const pillLabels = ['PROJECT', 'CHALLENGE', 'APPROACH', 'IMPACT']
@@ -57,7 +63,7 @@ function VideoCard({ style, naturalScale, delay, videoSrc, onClick, offsetX, off
       onClick={onClick}
     >
       <video
-        src={`/videos/bytedance/${videoSrc}`}
+        src={videoSrc}
         autoPlay
         loop
         muted
@@ -159,8 +165,8 @@ export default function WorksShowcase({ work }) {
             key={`${i}-${hasAnimated}`}
             delay={card.delay}
             naturalScale={card.scale}
-            videoSrc={videoList[i]}
-            onClick={() => setActiveVideo(i)}
+            videoSrc={showcaseVideos[i].preview}
+            onClick={() => showcaseVideos[i].polyv && setActiveVideo(i)}
             offsetX={offX}
             offsetY={offY}
             hasAnimated={hasAnimated}
@@ -206,17 +212,16 @@ export default function WorksShowcase({ work }) {
       </div>
 
       {/* Expanded video overlay */}
-      {activeVideo !== null && (
+      {activeVideo !== null && showcaseVideos[activeVideo]?.polyv && (
         <div className="showcase-expand-backdrop" onClick={() => setActiveVideo(null)}>
           <div className="showcase-expand-video" onClick={(e) => e.stopPropagation()}>
-            <video
-              src={`/videos/bytedance/${videoList[activeVideo]}`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              controls
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            <iframe
+              src={`https://go.plvideo.cn/front/video/preview?vid=${showcaseVideos[activeVideo].polyv}`}
+              allowFullScreen
+              mozAllowFullScreen
+              webkitAllowFullScreen
+              title="ByteDance video"
+              style={{ width: '100%', height: '100%', border: 'none', borderRadius: 12 }}
             />
           </div>
         </div>

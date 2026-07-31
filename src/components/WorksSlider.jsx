@@ -1,32 +1,27 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 import BilingualText from './BilingualText'
 
 const slideVideos = [
-  '/videos/飞鹤超新星奶酪-办公篇.mp4',
-  '/videos/飞鹤超新星奶酪-加班篇.mp4',
-  '/videos/飞鹤超新星奶酪-篮球篇.mp4',
-  '/videos/飞鹤超新星奶酪-补习篇.mp4',
+  'g7c16240b1a1fe173cc247a1174323a6_g',
+  'g7c16240b1bb6f1880acb9a500965642_g',
+  'g7c16240b1b405094313968bc73586e4_g',
+  'g7c16240b184ea86d706e71712f6b4a1_g',
 ]
 
 export default function WorksSlider({ work }) {
   const scrollRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(2)
-  const [expanded, setExpanded] = useState(false)
-  const videoRefs = useRef([])
   const videoCount = 4
 
   useEffect(() => {
-    if (expanded) return
     const timer = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % videoCount)
     }, 4000)
     return () => clearInterval(timer)
-  }, [expanded])
+  }, [])
 
-  // Auto-center the active card
   useEffect(() => {
-    if (expanded) return
     const track = scrollRef.current
     if (!track) return
     const card = track.children[activeIndex]
@@ -36,24 +31,6 @@ export default function WorksSlider({ work }) {
     const offset = cardRect.left - trackRect.left + cardRect.width / 2 - trackRect.width / 2
     track.scrollTo({ left: track.scrollLeft + offset, behavior: 'smooth' })
   }, [activeIndex])
-
-  function handleCardClick(index) {
-    if (activeIndex === index) {
-      // Already centered — play expanded
-      setActiveIndex(index)
-      setTimeout(() => {
-        const vid = videoRefs.current[index]
-        if (vid) { vid.play(); setExpanded(true) }
-      }, 300)
-    } else {
-      setActiveIndex(index)
-    }
-  }
-
-  function closeExpanded() {
-    videoRefs.current[activeIndex]?.pause()
-    setExpanded(false)
-  }
 
   return (
     <div className="works-slider-wrapper">
@@ -92,44 +69,21 @@ export default function WorksSlider({ work }) {
             key={i}
             className={`works-slider-card ${activeIndex === i ? 'active' : ''}`}
             animate={{ scale: activeIndex === i ? 1.02 : 1 }}
-            onClick={() => handleCardClick(i)}
             style={{flex:'0 0 600px'}}
           >
             <div className="works-slider-video">
-              <video
-                ref={el => videoRefs.current[i] = el}
-                src={slideVideos[i]}
-                playsInline loop muted
-                style={{width:'100%', height:'100%', objectFit:'cover', borderRadius:10}}
+              <iframe
+                src={`https://go.plvideo.cn/front/video/preview?vid=${slideVideos[i]}`}
+                allowFullScreen
+                mozAllowFullScreen
+                webkitAllowFullScreen
+                title={`飞鹤视频 ${i + 1}`}
+                style={{width:'100%', height:'100%', border:'none'}}
               />
-              {activeIndex !== i && (
-                <div style={{position:'absolute', inset:0, background:'rgba(0,0,0,0.6)', borderRadius:10, pointerEvents:'none'}} />
-              )}
-              <span className="works-slider-play">▶</span>
             </div>
           </motion.div>
         ))}
       </div>
-
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            className="works-slider-expanded-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeExpanded}
-          >
-            <div className="works-slider-expanded" onClick={e => e.stopPropagation()}>
-              <video
-                src={slideVideos[activeIndex]}
-                playsInline loop muted autoPlay controls
-                style={{width:'100%', height:'100%', objectFit:'contain', borderRadius:12}}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

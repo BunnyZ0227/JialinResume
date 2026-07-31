@@ -1,47 +1,32 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import BilingualText from './BilingualText'
 
-const videoSrcs = ['/videos/bilibili.mp4', '/videos/腾讯游戏.mp4']
+const videoSrcs = [
+  'g7c16240b175cae2525a2a3360fba74b_g',
+  'g7c16240b133ab677c413d0af40a20fc_g',
+]
+
+const polyvSrc = (vid) => `https://go.plvideo.cn/front/video/preview?vid=${vid}`
 
 export default function WorksAIGC({ work }) {
-  const [activeVideo, setActiveVideo] = useState(null)
-  const videoRefs = useRef([])
-
-  function handleClick(index) {
-    const vid = videoRefs.current[index]
-    if (!vid) return
-    if (activeVideo === index) {
-      vid.pause()
-      setActiveVideo(null)
-    } else {
-      if (activeVideo !== null) videoRefs.current[activeVideo]?.pause()
-      vid.currentTime = 0
-      vid.play()
-      setActiveVideo(index)
-    }
-  }
-
-  function handleBackdropClick() {
-    if (activeVideo !== null) videoRefs.current[activeVideo]?.pause()
-    setActiveVideo(null)
-  }
+  const [active, setActive] = useState(null)
 
   return (
     <div className="works-aigc">
       <div className="works-aigc-inner">
         {/* Left video */}
         <div className="works-aigc-video-wrapper works-aigc-left">
-          <div className="works-aigc-video" onClick={() => handleClick(0)}>
-            <video
-              ref={el => videoRefs.current[0] = el}
-              src={videoSrcs[0]}
-              playsInline loop muted
-              style={{width:'100%', height:'100%', objectFit:'cover'}}
+          <div className="works-aigc-video">
+            <iframe
+              src={polyvSrc(videoSrcs[0])}
+              allowFullScreen
+              mozAllowFullScreen
+              webkitAllowFullScreen
+              title="AIGC 1"
+              style={{width:'100%', height:'100%', border:'none'}}
             />
-            {activeVideo !== 0 && (
-              <span className="works-aigc-play">▶</span>
-            )}
+            <button className="works-aigc-expand-btn" onClick={() => setActive(0)} aria-label="播放视频 1">▶</button>
           </div>
         </div>
 
@@ -75,36 +60,38 @@ export default function WorksAIGC({ work }) {
 
         {/* Right video */}
         <div className="works-aigc-video-wrapper works-aigc-right">
-          <div className="works-aigc-video" onClick={() => handleClick(1)}>
-            <video
-              ref={el => videoRefs.current[1] = el}
-              src={videoSrcs[1]}
-              playsInline loop muted
-              style={{width:'100%', height:'100%', objectFit:'cover'}}
+          <div className="works-aigc-video">
+            <iframe
+              src={polyvSrc(videoSrcs[1])}
+              allowFullScreen
+              mozAllowFullScreen
+              webkitAllowFullScreen
+              title="AIGC 2"
+              style={{width:'100%', height:'100%', border:'none'}}
             />
-            {activeVideo !== 1 && (
-              <span className="works-aigc-play">▶</span>
-            )}
+            <button className="works-aigc-expand-btn" onClick={() => setActive(1)} aria-label="播放视频 2">▶</button>
           </div>
         </div>
       </div>
 
-      {/* Expanded modal */}
+      {/* Expanded center playback */}
       <AnimatePresence>
-        {activeVideo !== null && (
+        {active !== null && (
           <motion.div
-            className="works-aigc-expanded-backdrop"
+            className="works-aigc-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={handleBackdropClick}
+            onClick={() => setActive(null)}
           >
-            <div className="works-aigc-expanded" onClick={e => e.stopPropagation()}>
-              <video
-                src={videoSrcs[activeVideo]}
-                playsInline loop muted autoPlay
-                controls
-                style={{width:'100%', height:'100%', objectFit:'cover', borderRadius:12}}
+            <div className="works-aigc-modal" onClick={(e) => e.stopPropagation()}>
+              <iframe
+                src={polyvSrc(videoSrcs[active])}
+                allowFullScreen
+                mozAllowFullScreen
+                webkitAllowFullScreen
+                title={`AIGC 播放 ${active + 1}`}
+                style={{width:'100%', height:'100%', border:'none', borderRadius:12}}
               />
             </div>
           </motion.div>

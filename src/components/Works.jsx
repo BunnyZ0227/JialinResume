@@ -53,12 +53,14 @@ export default function Works() {
         </div>
         <div className="work-featured-right">
           <div className="work-featured-video">
-            <video
-              src="/videos/环球新年MV.mp4"
-              playsInline loop muted
-              style={{width:'100%', height:'100%', objectFit:'cover'}}
+            <iframe
+              src="https://go.plvideo.cn/front/video/preview?vid=g7c16240b135f40407164152ca8cc482_g"
+              allowFullScreen
+              mozAllowFullScreen
+              webkitAllowFullScreen
+              title="环球新年MV"
+              style={{width:'100%', height:'100%', border:'none'}}
             />
-            <span className="work-featured-play">▶</span>
           </div>
           <div className="work-featured-metrics">
             {secondWork.metrics.cn.map((m, i) => (

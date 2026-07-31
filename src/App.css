@@ -446,6 +446,10 @@
   z-index: -1;
 }
 
+.tear-paper-hobbies::after {
+  background: transparent;
+}
+
 .tear-paper {
   display: block;
   width: 100%;
@@ -477,7 +481,7 @@
   margin: -2rem auto 0;
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 3rem;
   align-items: flex-start;
 }
 
@@ -523,6 +527,7 @@
   opacity: 1;
   position: relative;
   z-index: 1;
+  max-width: 60ch;
 }
 
 .about-education {
@@ -586,8 +591,10 @@
 .about-photo-tilt .tilted-card-caption {
   font-family: "Playfair Display", serif;
   font-style: italic;
+  font-weight: 700;
   color: #fff;
-  font-size: 0.8rem;
+  background-color: #8d8379;
+  font-size: 0.95rem;
   padding: 4px 10px;
   border-radius: 6px;
 }
@@ -958,20 +965,6 @@
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-}
-
-.work-featured-play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  color: #fff;
-  opacity: 0.5;
-  background: rgba(0,0,0,0.15);
-  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -1187,19 +1180,6 @@
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-}
-
-.works-slider-play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  color: #fff;
-  opacity: 0.5;
-  background: rgba(0,0,0,0.15);
-  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -1545,45 +1525,46 @@
 /* FOOTER */
 .footer {
   padding: 6rem 3rem 2rem;
-  background: #333;
-  color: #fff;
+  background: #f8f4ef;
+  color: #1c1c1c;
 }
 
 .footer-content {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(222, 218, 212, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .footer-heading {
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.005em;
   margin-bottom: 0.75rem;
 }
 
 .footer-subheading {
   font-size: 1rem;
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 .footer-contact {
-  text-align: right;
+  text-align: center;
 }
 
 .footer-email {
   display: block;
   font-size: 1.1rem;
-  color: #fff;  font-weight: 500;
-  color: #fff;
+  color: #1c1c1c;
+  font-weight: 500;
   transition: opacity 0.2s;
-  margin-bottom: 2rem;
+  margin-bottom: 0.4rem;
 }
 
 .footer-email:hover {
@@ -1593,7 +1574,8 @@
 .footer-phone {
   display: block;
   font-size: 1.1rem;
-  color: #fff;  opacity: 0.5;
+  color: #1c1c1c;
+  opacity: 0.5;
   letter-spacing: 0.05em;
 }
 
@@ -1601,34 +1583,34 @@
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 1.5rem;
   padding-top: 2rem;
 }
 
 .footer-back-top {
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(222, 218, 212, 0.2);
-  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: #1c1c1c;
   font-size: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   transition: all 0.3s ease;
 }
 
 .footer-back-top:hover {
-  background: #111;
+  background: #1c1c1c;
   color: #fff;
-  border-color: #fff;
+  border-color: #1c1c1c;
 }
 
 .footer-copy {
   font-size: 1.1rem;
-  color: #fff;  opacity: 0.3;
+  color: #1c1c1c;
+  opacity: 0.35;
   letter-spacing: 0.05em;
 }
 
@@ -1836,7 +1818,7 @@
   cursor: pointer;
   overflow: hidden;
 }
-.works-aigc-play {
+.works-aigc-expand-btn {
   position: absolute;
   inset: 0;
   display: flex;
@@ -1844,9 +1826,30 @@
   justify-content: center;
   font-size: 2.5rem;
   color: #fff;
-  opacity: 0.5;
   background: rgba(0,0,0,0.15);
-  pointer-events: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.works-aigc-expand-btn:hover { background: rgba(0,0,0,0.35); }
+.works-aigc-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.works-aigc-modal {
+  width: 75vw;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: default;
 }
 .works-aigc-label {
   font-size: 0.75rem;
@@ -1861,49 +1864,6 @@
   .works-aigc-left { left: auto; }
   .works-aigc-right { right: auto; }
 }
-
-/* Works AIGC expanded modal */
-.works-aigc-expanded-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 30;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.works-aigc-expanded {
-  position: relative;
-  width: 75vw;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
-  cursor: default;
-}
-.works-aigc-expanded-video {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-}
-.works-aigc-close {
-  position: absolute;
-  top: -2.5rem;
-  right: 0;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  opacity: 0.6;
-  padding: 0.5rem;
-}
-.works-aigc-close:hover { opacity: 1; }
 
 /* WORKS AI PROJECTS — left text, right folder cards */
 .works-ai-projects {
@@ -2013,22 +1973,6 @@
   text-align: center;
   margin-top: 2rem;
   letter-spacing: 0.05em;
-}
-
-.works-slider-expanded-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.works-slider-expanded {
-  width: 75vw;
-  max-width: 1000px;
-  aspect-ratio: 16 / 9;
 }
 
 .about-portrait-wrapper {

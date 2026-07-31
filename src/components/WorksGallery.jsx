@@ -1,52 +1,20 @@
-import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { useState } from 'react'
+import { motion } from 'motion/react'
 import BilingualText from './BilingualText'
 import AnimatedCounter from './AnimatedCounter'
 
 const adidasVideos = [
-  '/videos/adidas/229.MP4',
-  '/videos/adidas/340.MP4',
-  '/videos/adidas/%E5%A7%9A%E7%90%9B%E5%BC%80%E7%AE%B1MP4100MB.mp4',
-  '/videos/adidas/385.MP4',
-  '/videos/adidas/440.MP4',
+  'g7c16240b1a49787e2357ac92254dee6_g',
+  'g7c16240b1ff901d45aa8e2a256e4649_g',
+  'g7c16240b1e8ba83c24d4f9c80f234ce_g',
+  'g7c16240b1938a916a1b12847a94c33f_g',
+  'g7c16240b1f5fdf198b30f024cb48610_g',
 ]
+
+const polyvSrc = (vid) => `https://go.plvideo.cn/front/video/preview?vid=${vid}`
 
 export default function WorksGallery({ work }) {
   const [activeIndex, setActiveIndex] = useState(2)
-  const [playingIndex, setPlayingIndex] = useState(null)
-  const videoRefs = useRef([])
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const v = videoRefs.current[2]
-      if (v) { v.play(); setPlayingIndex(2) }
-    }, 800)
-    return () => clearTimeout(t)
-  }, [])
-
-  function handleClick(index) {
-    if (activeIndex === index) {
-      const vid = videoRefs.current[index]
-      if (vid) {
-        if (vid.paused) { vid.play(); setPlayingIndex(index) }
-        else { vid.pause(); setPlayingIndex(null) }
-      }
-    } else {
-      if (playingIndex !== null) { videoRefs.current[playingIndex]?.pause(); setPlayingIndex(null) }
-      setActiveIndex(index)
-      setTimeout(() => {
-        const v = videoRefs.current[index]
-        if (v) { v.play(); setPlayingIndex(index) }
-      }, 350)
-    }
-  }
-
-  function closePlayback() {
-    if (playingIndex !== null) {
-      videoRefs.current[playingIndex]?.pause()
-      setPlayingIndex(null)
-    }
-  }
 
   return (
     <div className="works-gallery">
@@ -93,7 +61,6 @@ export default function WorksGallery({ work }) {
               borderRadius:15, left:'50%', top:'50%',
               marginLeft:-150, marginTop:-267,
               background:'#1a1a1a', overflow:'hidden',
-              cursor: playingIndex !== null ? 'default' : 'pointer',
               transformOrigin:'bottom center'
             }}
             animate={{
@@ -103,19 +70,21 @@ export default function WorksGallery({ work }) {
               y: activeIndex === i ? -12 : 0,
               zIndex: activeIndex === i ? 10 : i,
             }}
-            transition={playingIndex !== null ? { duration: 0 } : { type: 'spring', stiffness: 250, damping: 25 }}
-            onClick={() => handleClick(i)}
+            transition={{ type: 'spring', stiffness: 250, damping: 25 }}
           >
-            <video
-              ref={el => videoRefs.current[i] = el}
-              src={adidasVideos[i]}
-              playsInline loop muted
-              style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
+            <iframe
+              src={polyvSrc(adidasVideos[i])}
+              allowFullScreen
+              mozAllowFullScreen
+              webkitAllowFullScreen
+              title={`adidas ${i + 1}`}
+              style={{width:'100%', height:'100%', border:'none', display:'block'}}
             />
-            {playingIndex !== i && (
-              <div style={{position:"absolute", inset:0, background:"rgba(0,0,0,0.45)", borderRadius:15, display:"flex", alignItems:"center", justifyContent:"center"}}>
-                <span style={{fontSize:"2.5rem", color:"#fff", opacity:0.5}}>▶</span>
-              </div>
+            {activeIndex !== i && (
+              <div
+                style={{position:'absolute', inset:0, cursor:'pointer'}}
+                onClick={() => setActiveIndex(i)}
+              />
             )}
           </motion.div>
         ))}

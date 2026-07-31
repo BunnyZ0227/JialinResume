@@ -37,7 +37,7 @@ export default function About() {
 
           <div className="about-photo-wrapper">
             <TiltedCard
-              imageSrc="/images/portrait.jpg"
+              imageSrc="/images/portrait.webp"
               altText="Jialin Zhang"
               containerHeight="150px"
               containerWidth="110px"
