@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { experiences } from '../data/content'
 import BilingualText from './BilingualText'
 
@@ -34,7 +35,26 @@ export default function Timeline() {
 
               {exp.brands && (
                 <p className="tl-brands">
-                  <BilingualText cn={exp.brands.cn} en={exp.brands.en} as="span" />
+                  <BilingualText
+                    cn={exp.brands.cn.split('\n').map((line, i) => {
+                      const m = line.match(/^(互联网|消费品)：/)
+                      return (
+                        <Fragment key={i}>
+                          {i > 0 && <br />}
+                          {m ? (
+                            <>
+                              <strong>{m[0]}</strong>
+                              {line.slice(m[0].length)}
+                            </>
+                          ) : (
+                            line
+                          )}
+                        </Fragment>
+                      )
+                    })}
+                    en={exp.brands.en}
+                    as="span"
+                  />
                 </p>
               )}
             </div>

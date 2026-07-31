@@ -3,8 +3,18 @@ import { motion, AnimatePresence } from 'motion/react'
 import BilingualText from './BilingualText'
 
 const cards = [
-  { title: '广告行业调研 Skill', desc: '本地化广告行业竞品调研工具' },
-  { title: '创意SOP Skill', desc: '广告创意流程自动化助手' },
+  {
+    label: '本地化广告行业调研Skill',
+    run: 'run research.skill',
+    lines: ['▸ 拉取竞品数据 · 自动对比', '▸ 生成洞察报告 — done'],
+    result: '原手工 3天 → 现在 5分钟',
+  },
+  {
+    label: '创意SOP skill',
+    run: 'run creative.sop',
+    lines: ['▸ 按环节执行策略模板', '▸ 输出创意视角 — done'],
+    result: '散装流程 → 标准化自动化',
+  },
 ]
 
 export default function WorksAIProjects({ work }) {
@@ -27,12 +37,6 @@ export default function WorksAIProjects({ work }) {
           </div>
           <div className="works-ai-projects-details">
             <div className="work-detail">
-              <span className="work-detail-label">CHALLENGE</span>
-              <p className="work-detail-text">
-                <BilingualText cn={work.challenge.cn} en={work.challenge.en} as="span" />
-              </p>
-            </div>
-            <div className="work-detail">
               <span className="work-detail-label">APPROACH</span>
               <p className="work-detail-text">
                 <BilingualText cn={work.approach.cn} en={work.approach.en} as="span" />
@@ -49,24 +53,32 @@ export default function WorksAIProjects({ work }) {
 
         {/* Right: folder with cards */}
         <div className="works-ai-projects-folder">
-          <div className="works-ai-projects-folder-bg" />
           {cards.map((card, i) => (
             <motion.div
               key={i}
-              className="works-ai-projects-card"
+              className={`works-ai-projects-card ${i === 0 ? 'works-ai-projects-card--warm' : 'works-ai-projects-card--cool'}`}
               animate={{
-                y: activeCard === i ? -60 : i * 10,
+                y: activeCard === i ? -70 : 0,
                 scale: activeCard === i ? 1.05 : 1,
                 zIndex: activeCard === i ? 10 : i,
-                rotate: activeCard === i ? 0 : i === 0 ? -3 : 3,
+                rotate: activeCard === i ? 0 : i === 0 ? -2 : 2,
               }}
               transition={{ type: 'spring', stiffness: 200, damping: 25 }}
               onClick={() => setActiveCard(activeCard === i ? null : i)}
             >
               <div className="works-ai-projects-card-inner">
-                <span className="works-ai-projects-card-icon">📁</span>
-                <h4 className="works-ai-projects-card-title">{card.title}</h4>
-                <p className="works-ai-projects-card-desc">{card.desc}</p>
+                <div className="term-bar">
+                  <span className="term-dot term-dot-red" />
+                  <span className="term-dot term-dot-yellow" />
+                  <span className="term-dot term-dot-green" />
+                  <span className="term-title">{card.label}</span>
+                </div>
+                <div className="term-body">
+                  <p className="term-line term-prompt">$ {card.run}</p>
+                  <p className="term-line">{card.lines[0]}</p>
+                  <p className="term-line term-ok">{card.lines[1]}</p>
+                </div>
+                <div className="term-result">{card.result}</div>
               </div>
             </motion.div>
           ))}

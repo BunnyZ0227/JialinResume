@@ -44,7 +44,7 @@ export default function WorksGallery({ work }) {
         <div className="work-featured-metrics">
           {work.metrics.cn.map((m, i) => (
             <div key={i} className="work-metric-block">
-              <span className="work-metric-value" style={{fontSize:"1.8rem"}}><AnimatedCounter value={m.value} /></span>
+              <span className="work-metric-value" style={{fontSize:"2.4rem", fontWeight:700}}><AnimatedCounter value={m.value} /></span>
               <span className="work-metric-label" style={{fontSize:"0.8rem"}}>{m.label}</span>
             </div>
           ))}

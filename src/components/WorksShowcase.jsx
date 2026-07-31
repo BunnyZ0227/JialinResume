@@ -5,7 +5,7 @@ import BilingualText from './BilingualText'
 // 2x largest overflow top, smallest near text, medium mid/bottom
 // Burst: center-small first → medium → 2x edge last
 const showcaseVideos = [
-  { preview: '/videos/bytedance/preview/0.mp4', polyv: 'g7c16240b12085db9be5b5aa95cbf95b_g' },
+  { preview: '/videos/bytedance/preview/0.mp4', polyv: 'g7c16240b1c968ce32847c6dd0aac271_g' },
   { preview: '/videos/bytedance/preview/1.mp4', polyv: 'g7c16240b1ca04f85e0c99960c3ee66c_g' },
   { preview: '/videos/bytedance/preview/2.mp4', polyv: 'g7c16240b13d25cf2823cf71c061e557_g' },
   { preview: '/videos/bytedance/preview/3.mp4', polyv: 'g7c16240b1cdd430232ebfda95b8f5a5_g' },
@@ -13,7 +13,7 @@ const showcaseVideos = [
   { preview: '/videos/bytedance/preview/5.mp4', polyv: 'g7c16240b180fd86dc2239f6ff0fe4a6_g' },
   { preview: '/videos/bytedance/preview/6.mp4', polyv: 'g7c16240b134b11364a85e1a6b93fa24_g' },
   { preview: '/videos/bytedance/preview/7.mp4', polyv: 'g7c16240b1f33a19203589bab8ec4c49_g' },
-  { preview: '/videos/bytedance/preview/8.mp4', polyv: 'g7c16240b1c968ce32847c6dd0aac271_g' },
+  { preview: '/videos/bytedance/preview/8.mp4', polyv: 'g7c16240b12085db9be5b5aa95cbf95b_g' },
   { preview: '/videos/bytedance/preview/9.mp4', polyv: 'g7c16240b1cd6c5d067d72b42c1662c4_g' },
 ]
 

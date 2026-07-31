@@ -47,7 +47,7 @@ export default function Hobbies() {
   return (
     <section id="hobbies" className="hobbies">
       <div className="hobbies-header">
-        <div className="section-label" style={{textAlign:"center"}}>More About Me</div>
+        <div className="section-label hobbies-label-script" style={{textAlign:"center"}}>More About Me</div>
         <p className="hobbies-desc">
           <BilingualText cn="业余时间我喜欢手工，也在摄影和绘画中定格美好。" en="In my spare time, I enjoy crafting, and freeze beautiful moments through photography and painting." />
         </p>
