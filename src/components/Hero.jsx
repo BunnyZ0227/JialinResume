@@ -80,7 +80,7 @@ export default function Hero() {
             />
           </h1>
 <p className="hero-subtitle">创意 / 策略 / 内容 / AI</p>
-          <div className="hero-meta">
+          <div className="hero-meta" style={{flexDirection:"column", alignItems:"flex-start", gap:"0.2rem"}}>
             <span className="hero-meta-item">+86 17600010227</span>
             <span className="hero-meta-sep">/</span>
             <span className="hero-meta-item">Jzhang0227@126.com</span>

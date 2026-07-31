@@ -4,8 +4,8 @@ import BilingualText from './BilingualText'
 export default function Methodology() {
   return (
     <section id="methodology" className="methodology">
-      <div className="section-label">
-        <BilingualText cn="方法论" en="Methodology" />
+      <div className="section-label" style={{textAlign:"center"}}>
+        <BilingualText cn="METHODOLOGY" style={{textAlign:"center"}} en="Methodology" />
       </div>
 
       <div className="methodology-header">

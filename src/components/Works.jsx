@@ -4,13 +4,15 @@ import WorksShowcase from './WorksShowcase'
 import AnimatedCounter from './AnimatedCounter'
 import WorksSlider from './WorksSlider'
 import WorksGallery from './WorksGallery'
+import WorksAIGC from './WorksAIGC'
+import WorksAIProjects from './WorksAIProjects'
 
 export default function Works() {
   const firstWork = works[0]
   const secondWork = works[1]
   const thirdWork = works[2]
   const fifthWork = works[4]
-  const restWorks = [works[3], works[5]]
+  const restWorks = []
 
   return (
     <section id="works" className="works">
@@ -51,6 +53,11 @@ export default function Works() {
         </div>
         <div className="work-featured-right">
           <div className="work-featured-video">
+            <video
+              src="/videos/环球新年MV.mp4"
+              playsInline loop muted
+              style={{width:'100%', height:'100%', objectFit:'cover'}}
+            />
             <span className="work-featured-play">▶</span>
           </div>
           <div className="work-featured-metrics">
@@ -68,11 +75,15 @@ export default function Works() {
 
       <WorksGallery work={fifthWork} />
 
-      <div className="works-grid">
+      <WorksAIGC work={works[3]} />
+
+      <WorksAIProjects work={works[5]} />
+
+      {restWorks.length > 0 && (<div className="works-grid">
         {restWorks.map((work) => (
           <article key={work.id} className="work-card">
             <div className="work-card-visual">
-              <div className="work-card-number">0{[5, 6][restWorks.indexOf(work)]}</div>
+              <div className="work-card-number">06</div>
               <div className="work-card-tags">
                 {work.tags.map((tag, i) => (
                   <span key={i} className="work-tag">{tag}</span>
@@ -107,6 +118,7 @@ export default function Works() {
           </article>
         ))}
       </div>
+      )}
     </section>
   )
 }

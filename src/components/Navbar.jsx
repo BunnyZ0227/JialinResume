@@ -11,15 +11,26 @@ export default function Navbar() {
       const scrollY = window.scrollY
       setScrolled(scrollY > 60)
 
-      const about = document.getElementById('about')
-      const hobbies = document.getElementById('hobbies')
-
-      const aboutTop = about?.getBoundingClientRect().top ?? Infinity
-      const hobbiesTop = hobbies?.getBoundingClientRect().top ?? Infinity
-
       const navH = 80
-      const inLightZone = aboutTop <= navH && hobbiesTop > navH
-      setOnLightBg(inLightZone)
+      const parseRGBA = (color) => {
+        const match = color.match(/rgba?\(([^)]+)\)/)
+        if (!match) return null
+        return match[1].split(',').map((part) => parseFloat(part))
+      }
+
+      const hits = document.elementsFromPoint(window.innerWidth / 2, navH + 2)
+      let onLight = false
+      for (const el of hits) {
+        if (el.closest && el.closest('.navbar')) continue
+        const rgba = parseRGBA(getComputedStyle(el).backgroundColor)
+        const alpha = rgba && rgba.length > 3 ? rgba[3] : 1
+        if (rgba && alpha > 0) {
+          const luminance = (0.2126 * rgba[0] + 0.7152 * rgba[1] + 0.0722 * rgba[2]) / 255
+          onLight = luminance > 0.55
+          break
+        }
+      }
+      setOnLightBg(onLight)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)

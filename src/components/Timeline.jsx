@@ -4,9 +4,14 @@ import BilingualText from './BilingualText'
 export default function Timeline() {
   return (
     <section id="experience" className="timeline">
+      <div className="timeline-inner">
       <div className="section-label">
-        <BilingualText cn="职业经历" en="Experience" />
+        <BilingualText cn="EXPERIENCES" en="EXPERIENCES" />
       </div>
+
+      <h2 className="timeline-title">
+        <BilingualText cn="职业经历" en="Professional Experience" />
+      </h2>
 
       <div className="timeline-list">
         {experiences.map((exp, i) => (
@@ -35,6 +40,7 @@ export default function Timeline() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

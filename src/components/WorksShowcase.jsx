@@ -103,14 +103,14 @@ export default function WorksShowcase({ work }) {
 
   const phaseContent = [
     <div key="project" className="showcase-phase-inner">
+      <p className="showcase-subtitle">
+        <BilingualText cn="字节跳动2019-2026" en="ByteDance 2019-2026" />
+      </p>
       <h2 className="showcase-main-title">
         <BilingualText cn="全球化用户洞察" en="Global Consumer Insight" />
         <br />
         <BilingualText cn="与内容策略" en="& Content Strategy" />
       </h2>
-      <p className="showcase-subtitle">
-        <BilingualText cn="字节跳动2018-2026" en="ByteDance 2018-2026" />
-      </p>
     </div>,
     <div key="challenge" className="showcase-phase-inner">
       <span className="showcase-phase-label">CHALLENGE</span>

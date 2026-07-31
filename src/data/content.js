@@ -16,7 +16,7 @@ export const siteConfig = {
 export const navItems = [
   { id: 'about', label: { cn: '关于', en: 'About' } },
   { id: 'works', label: { cn: '作品', en: 'Works' } },
-  { id: 'methodology', label: { cn: '方法论', en: 'Methodology' } },
+  { id: 'methodology', label: { cn: 'METHODOLOGY', en: 'METHODOLOGY' } },
   { id: 'experience', label: { cn: '经历', en: 'Experience' } },
   { id: 'hobbies', label: { cn: '爱好', en: 'Hobbies' } },
   { id: 'contact', label: { cn: '联系', en: 'Contact' } }
@@ -45,7 +45,7 @@ export const aboutContent = {
 export const works = [
   {
     id: 'bytedance',
-    title: { cn: '全球化用户洞察与内容策略 · 字节跳动 2018—至今', en: 'Global Consumer Insight & Content Strategy · ByteDance 2018-Present' },
+    title: { cn: '全球化用户洞察与内容策略 · 字节跳动 2019—至今', en: 'Global Consumer Insight & Content Strategy · ByteDance 2019-Present' },
     tags: ['内容策略', 'A/B测试', '全球化'],
     challenge: {
       cn: ['字节跳动全球业务极速扩张，产品矩阵覆盖东南亚、北美、', '中东等文化迥异的市场。传统"一套素材打全球"模式', '既跟不上产品送代速度，也无法真正打动本地用户。'],
@@ -100,7 +100,7 @@ export const works = [
   },
   {
     id: 'aigc',
-    title: { cn: 'AIGC游戏品牌视频 · 《三国谋定天下》+ PUBGM 2025', en: 'AIGC Game Brand Video · Three Kingdoms + PUBGM 2025' },
+    title: { cn: 'AIGC游戏品牌视频', en: 'AIGC Game Brand Video' },
     tags: ['AIGC', '游戏营销', '品牌视频'],
     challenge: {
       cn: '游戏品牌视频长期被高预算CG工作室垄断——写实角色渲染、复杂场景构建、数月制作周期是行业标配。',
@@ -184,7 +184,7 @@ export const methodologyContent = {
 
 export const experiences = [
   {
-    period: '2018 — 至今',
+    period: '2019 年 — 至今',
     title: { cn: '品牌创意策略总监', en: 'Creative Strategist' },
     company: '联梦跳悦文化传媒(北京)有限公司 · 北京',
     highlights: {
@@ -217,7 +217,7 @@ export const hobbiesContent = {
   title: { cn: '业余爱好', en: 'Hobbies' },
   subtitle: { cn: '工作之外的一些热爱', en: 'Passions beyond work' },
   description: {
-    cn: '业余时间我喜欢手工，也喜欢在摄影和绘画中定格美好。',
+    cn: '业余时间我喜欢手工，也在摄影和绘画中定格美好。',
     en: 'In my spare time, I run a crystal shop and enjoy photography and sketching.'
   },
   categories: [
