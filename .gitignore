@@ -25,3 +25,6 @@ dist-ssr
 
 # 验证截图
 design-shots
+
+# 开发用视频源素材（不部署）
+sources
