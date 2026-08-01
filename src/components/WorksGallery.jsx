@@ -1,20 +1,36 @@
-import { useState } from 'react'
+import { useRef, useState, useLayoutEffect } from 'react'
 import { motion } from 'motion/react'
 import BilingualText from './BilingualText'
 import AnimatedCounter from './AnimatedCounter'
 
 const adidasVideos = [
-  'g7c16240b1a49787e2357ac92254dee6_g',
-  'g7c16240b1ff901d45aa8e2a256e4649_g',
-  'g7c16240b1e8ba83c24d4f9c80f234ce_g',
-  'g7c16240b1938a916a1b12847a94c33f_g',
-  'g7c16240b1f5fdf198b30f024cb48610_g',
+  'hdc06fc71750814018fc95f468d68b89_h',
+  'hdc06fc717dc838969a2bf124e5a82d9_h',
+  'hdc06fc7176774aa037b4a2fd9ee8e9a_h',
+  'hdc06fc7174f96d6c5e13e6cb68dd9ec_h',
+  'hdc06fc7170f0a1d9f5ae94fe80114b3_h',
 ]
 
 const polyvSrc = (vid) => `https://go.plvideo.cn/front/video/preview?vid=${vid}`
 
 export default function WorksGallery({ work }) {
   const [activeIndex, setActiveIndex] = useState(2)
+  const fanRef = useRef(null)
+  const [fanW, setFanW] = useState(420)
+
+  useLayoutEffect(() => {
+    const el = fanRef.current
+    if (!el) return
+    const update = () => setFanW(el.clientWidth)
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const spread = Math.min(1, Math.max(0.4, fanW / 720))
+  const xOffsets = [-120, -60, 0, 60, 120].map(o => Math.round(o * spread))
+  const rotates = [-20, -10, 0, 10, 20].map(r => Math.round(r * spread))
 
   return (
     <div className="works-gallery">
@@ -52,20 +68,14 @@ export default function WorksGallery({ work }) {
       </div>
 
       {/* 5-card symmetric fan spread */}
-      <div style={{position:'relative', width:420, height:600, marginLeft:280, flexShrink:0}}>
+      <div className="works-gallery-fan" ref={fanRef}>
         {[0, 1, 2, 3, 4].map((i) => (
           <motion.div
             key={i}
-            style={{
-              position:'absolute', width:300, height:533,
-              borderRadius:15, left:'50%', top:'50%',
-              marginLeft:-150, marginTop:-267,
-              background:'#1a1a1a', overflow:'hidden',
-              transformOrigin:'bottom center'
-            }}
+            className="works-gallery-fan-card"
             animate={{
-              rotate: [-20, -10, 0, 10, 20][i],
-              x: [-120, -60, 0, 60, 120][i],
+              rotate: rotates[i],
+              x: xOffsets[i],
               scale: activeIndex === i ? 0.95 : [0.78, 0.88, 0.88, 0.88, 0.78][i],
               y: activeIndex === i ? -12 : 0,
               zIndex: activeIndex === i ? 10 : i,

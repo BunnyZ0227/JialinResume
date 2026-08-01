@@ -3,23 +3,38 @@ import { motion } from 'motion/react'
 import BilingualText from './BilingualText'
 
 const slideVideos = [
-  'g7c16240b1a1fe173cc247a1174323a6_g',
-  'g7c16240b1bb6f1880acb9a500965642_g',
-  'g7c16240b1b405094313968bc73586e4_g',
-  'g7c16240b184ea86d706e71712f6b4a1_g',
+  'hdc06fc7174ffdade4d50460b2e785a1_h',
+  'hdc06fc71712abbede10d7a863b008dc_h',
+  'hdc06fc7170975e8e93b61a859375320_h',
+  'hdc06fc717f50f20ef26b8c37f51f5ad_h',
 ]
 
 export default function WorksSlider({ work }) {
   const scrollRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(2)
+  const [paused, setPaused] = useState(false)
+  const resumeTimer = useRef(null)
   const videoCount = 4
 
   useEffect(() => {
+    if (paused) return
     const timer = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % videoCount)
     }, 4000)
     return () => clearInterval(timer)
-  }, [])
+  }, [paused, videoCount])
+
+  useEffect(() => () => clearTimeout(resumeTimer.current), [])
+
+  const pauseScroll = () => {
+    clearTimeout(resumeTimer.current)
+    setPaused(true)
+  }
+
+  const resumeScroll = (delay = 0) => {
+    clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => setPaused(false), delay)
+  }
 
   useEffect(() => {
     const track = scrollRef.current
@@ -33,7 +48,13 @@ export default function WorksSlider({ work }) {
   }, [activeIndex])
 
   return (
-    <div className="works-slider-wrapper">
+    <div
+      className="works-slider-wrapper"
+      onMouseEnter={pauseScroll}
+      onMouseLeave={() => resumeScroll()}
+      onTouchStart={pauseScroll}
+      onTouchEnd={() => resumeScroll(2500)}
+    >
       <div className="works-slider-text">
         <div className="works-slider-project active">
           <div className="works-slider-number">03</div>
@@ -69,7 +90,6 @@ export default function WorksSlider({ work }) {
             key={i}
             className={`works-slider-card ${activeIndex === i ? 'active' : ''}`}
             animate={{ scale: activeIndex === i ? 1.02 : 1 }}
-            style={{flex:'0 0 600px'}}
           >
             <div className="works-slider-video">
               <iframe

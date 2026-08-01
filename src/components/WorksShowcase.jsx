@@ -5,16 +5,16 @@ import BilingualText from './BilingualText'
 // 2x largest overflow top, smallest near text, medium mid/bottom
 // Burst: center-small first → medium → 2x edge last
 const showcaseVideos = [
-  { preview: '/videos/bytedance/preview/0.mp4', polyv: 'g7c16240b1c968ce32847c6dd0aac271_g' },
-  { preview: '/videos/bytedance/preview/1.mp4', polyv: 'g7c16240b1ca04f85e0c99960c3ee66c_g' },
-  { preview: '/videos/bytedance/preview/2.mp4', polyv: 'g7c16240b13d25cf2823cf71c061e557_g' },
-  { preview: '/videos/bytedance/preview/3.mp4', polyv: 'g7c16240b1cdd430232ebfda95b8f5a5_g' },
-  { preview: '/videos/bytedance/preview/4.mp4', polyv: 'g7c16240b117774c25fe94aae4e4c557_g' },
-  { preview: '/videos/bytedance/preview/5.mp4', polyv: 'g7c16240b180fd86dc2239f6ff0fe4a6_g' },
-  { preview: '/videos/bytedance/preview/6.mp4', polyv: 'g7c16240b134b11364a85e1a6b93fa24_g' },
-  { preview: '/videos/bytedance/preview/7.mp4', polyv: 'g7c16240b1f33a19203589bab8ec4c49_g' },
-  { preview: '/videos/bytedance/preview/8.mp4', polyv: 'g7c16240b12085db9be5b5aa95cbf95b_g' },
-  { preview: '/videos/bytedance/preview/9.mp4', polyv: 'g7c16240b1cd6c5d067d72b42c1662c4_g' },
+  { preview: '/videos/bytedance/preview/0.mp4', polyv: 'hdc06fc717122ec0112903b1bc88036d_h' },
+  { preview: '/videos/bytedance/preview/1.mp4', polyv: 'hdc06fc717f28015c13415363ed137a0_h' },
+  { preview: '/videos/bytedance/preview/2.mp4', polyv: 'hdc06fc71763a0db952e796f7eddff65_h' },
+  { preview: '/videos/bytedance/preview/3.mp4', polyv: 'hdc06fc7172a1f32bdc1156d0bd6179c_h' },
+  { preview: '/videos/bytedance/preview/4.mp4', polyv: 'hdc06fc717ed3a7316327e928cc88d86_h' },
+  { preview: '/videos/bytedance/preview/5.mp4', polyv: 'hdc06fc717e571f014a162b8e813297c_h' },
+  { preview: '/videos/bytedance/preview/6.mp4', polyv: 'hdc06fc717917fa0c17076b64c9973c4_h' },
+  { preview: '/videos/bytedance/preview/7.mp4', polyv: 'hdc06fc717c393aafeba55fe3c5808c4_h' },
+  { preview: '/videos/bytedance/preview/8.mp4', polyv: 'hdc06fc717d5b6db0ff6ca8f1042cf8c_h' },
+  { preview: '/videos/bytedance/preview/9.mp4', polyv: 'hdc06fc717e1aa8fe3b284ce7a5af860_h' },
 ]
 
 const cardDefs = [
@@ -32,8 +32,31 @@ const cardDefs = [
 
 const pillLabels = ['PROJECT', 'CHALLENGE', 'APPROACH', 'IMPACT']
 
+const projectTitleBlock = (
+  <div className="showcase-project-title">
+    <p className="showcase-subtitle">
+      <BilingualText cn="字节跳动2019-2026" en="ByteDance 2019-2026" />
+    </p>
+    <h2 className="showcase-main-title">
+      <BilingualText cn="全球化用户洞察" en="Global Consumer Insight" />
+      <br />
+      <BilingualText cn="与内容策略" en="& Content Strategy" />
+    </h2>
+  </div>
+)
+
 function VideoCard({ style, naturalScale, delay, videoSrc, onClick, offsetX, offsetY, hasAnimated }) {
   const ref = useRef(null)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const tryPlay = () => v.play().catch(() => {})
+    tryPlay()
+    v.addEventListener('loadeddata', tryPlay)
+    return () => v.removeEventListener('loadeddata', tryPlay)
+  }, [hasAnimated])
 
   function handleMouseMove(e) {
     if (!ref.current) return
@@ -63,11 +86,13 @@ function VideoCard({ style, naturalScale, delay, videoSrc, onClick, offsetX, off
       onClick={onClick}
     >
       <video
+        ref={videoRef}
         src={videoSrc}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', cursor: 'pointer' }}
       />
     </motion.div>
@@ -80,11 +105,13 @@ export default function WorksShowcase({ work }) {
   const [sectionDims, setSectionDims] = useState({ w: 1440, h: 900 })
   const sectionRef = useRef(null)
   const [hasAnimated, setHasAnimated] = useState(false)
+  const isMobile = sectionDims.w <= 768
+  const phaseCount = isMobile ? 3 : 4
 
   useEffect(() => {
-    const timer = setInterval(() => { setPhase(p => (p + 1) % 4) }, 8000)
+    const timer = setInterval(() => { setPhase(p => (p + 1) % phaseCount) }, 8000)
     return () => clearInterval(timer)
-  }, [])
+  }, [phaseCount])
 
   useEffect(() => {
     const el = sectionRef.current
@@ -107,16 +134,12 @@ export default function WorksShowcase({ work }) {
     return () => observer.disconnect()
   }, [hasAnimated])
 
+  const contentIndex = isMobile ? (phase % 3) + 1 : phase
+  const activeIdx = isMobile ? phase % 3 : phase
+
   const phaseContent = [
     <div key="project" className="showcase-phase-inner">
-      <p className="showcase-subtitle">
-        <BilingualText cn="字节跳动2019-2026" en="ByteDance 2019-2026" />
-      </p>
-      <h2 className="showcase-main-title">
-        <BilingualText cn="全球化用户洞察" en="Global Consumer Insight" />
-        <br />
-        <BilingualText cn="与内容策略" en="& Content Strategy" />
-      </h2>
+      {projectTitleBlock}
     </div>,
     <div key="challenge" className="showcase-phase-inner">
       <span className="showcase-phase-label">CHALLENGE</span>
@@ -164,11 +187,11 @@ export default function WorksShowcase({ work }) {
           <VideoCard
             key={`${i}-${hasAnimated}`}
             delay={card.delay}
-            naturalScale={card.scale}
+            naturalScale={isMobile ? 1 : card.scale}
             videoSrc={showcaseVideos[i].preview}
             onClick={() => showcaseVideos[i].polyv && setActiveVideo(i)}
-            offsetX={offX}
-            offsetY={offY}
+            offsetX={isMobile ? 0 : offX}
+            offsetY={isMobile ? 0 : offY}
             hasAnimated={hasAnimated}
             style={{
               position: 'absolute',
@@ -186,24 +209,26 @@ export default function WorksShowcase({ work }) {
 
       <div className="showcase-text-center">
         <div className="showcase-fixed-number">01</div>
+        {isMobile && <div className="showcase-fixed-title">{projectTitleBlock}</div>}
         <AnimatePresence mode="wait">
           <motion.div
             key={phase}
+            className="showcase-phase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
-            {phaseContent[phase]}
+            {phaseContent[contentIndex]}
           </motion.div>
         </AnimatePresence>
       </div>
 
       <div className="showcase-pills">
-        {pillLabels.map((label, i) => (
+        {(isMobile ? pillLabels.slice(1) : pillLabels).map((label, i) => (
           <button
             key={label}
-            className={`showcase-pill ${phase === i ? 'showcase-pill-active' : ''}`}
+            className={`showcase-pill ${activeIdx === i ? 'showcase-pill-active' : ''}`}
             onClick={() => setPhase(i)}
           >
             {label}

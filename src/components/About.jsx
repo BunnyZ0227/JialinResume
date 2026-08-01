@@ -15,7 +15,16 @@ export default function About() {
           <div className="about-quote-block">
             <span className="about-quote-mark">"</span>
             <p className="about-quote-text">
-              <BilingualText cn={aboutContent.intro.cn} en={aboutContent.intro.en} as="span" />
+              <BilingualText
+                cn={aboutContent.intro.cn}
+                en={
+                  <>
+                    <span className="intro-en-short">{aboutContent.intro.enShort}</span>
+                    <span className="intro-en-full">{aboutContent.intro.en}</span>
+                  </>
+                }
+                as="span"
+              />
             </p>
           </div>
         </div>

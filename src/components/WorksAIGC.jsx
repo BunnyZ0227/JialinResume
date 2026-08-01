@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'motion/react'
 import BilingualText from './BilingualText'
 
 const videoSrcs = [
-  'g7c16240b175cae2525a2a3360fba74b_g',
-  'g7c16240b133ab677c413d0af40a20fc_g',
+  'hdc06fc7170c4bd047c349101371f191_h',
+  'hdc06fc71793a82b37ec1e5741f179f4_h',
 ]
 
 const polyvSrc = (vid) => `https://go.plvideo.cn/front/video/preview?vid=${vid}`

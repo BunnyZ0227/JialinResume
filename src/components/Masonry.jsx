@@ -83,6 +83,19 @@ const Masonry = ({
     }
   }, [items]);
 
+  // 微信内置浏览器会拦截静音自动播放，首次触摸时兜底播放
+  useEffect(() => {
+    if (!imagesReady) return;
+    const kick = () => {
+      document.querySelectorAll('.item-video').forEach(v => {
+        if (v.muted) v.play().catch(() => {});
+      });
+    };
+    kick();
+    document.addEventListener('touchstart', kick, { passive: true });
+    return () => document.removeEventListener('touchstart', kick);
+  }, [imagesReady]);
+
   const grid = useMemo(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
@@ -90,7 +103,7 @@ const Masonry = ({
     return items.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = columnWidth * col;
-      const height = child.height / 2;
+      const height = Math.min(child.height / 2, columnWidth * (16 / 9));
       const y = colHeights[col];
       colHeights[col] += height;
       return { ...child, x, y, w: columnWidth, h: height };
@@ -159,7 +172,18 @@ const Masonry = ({
         >
           {item.video ? (
             <div className="item-img item-video-wrapper">
-              <video className="item-video" autoPlay muted loop playsInline preload="auto" src={item.video} />
+              <video
+                className="item-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                webkit-playsinline=""
+                preload="auto"
+                src={item.video}
+                x5-playsinline=""
+                x5-video-player-type="h5"
+              />
             </div>
           ) : (
             <div className="item-img" style={{ backgroundImage: `url(${item.img})` }} />
