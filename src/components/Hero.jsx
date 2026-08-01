@@ -3,10 +3,10 @@ import { motion } from 'motion/react'
 import RotatingText from './RotatingText'
 
 const carouselImages = [
-  '/images/wps_doc_12.jpg',
-  '/images/wps_doc_20.jpg',
-  '/images/wps_doc_7.jpg',
-  '/images/wps_doc_8.jpg'
+  '/images/wps_doc_12.webp',
+  '/images/wps_doc_20.webp',
+  '/images/wps_doc_7.webp',
+  '/images/wps_doc_8.webp'
 ]
 
 export default function Hero() {
