@@ -15,7 +15,7 @@ function App() {
       <main>
         <Hero />
         <div className="tear-paper-container">
-          <img className="tear-paper" src="/images/tear-paper.png" alt="" loading="lazy" />
+          <img className="tear-paper" src="/images/tear-paper.webp" alt="" loading="lazy" />
         </div>
         <About />
         <Works />
@@ -23,7 +23,7 @@ function App() {
         <Timeline />
         <Hobbies />
         <div className="tear-paper-container tear-paper-hobbies">
-          <img className="tear-paper" src="/images/tear-paper.png" alt="" loading="lazy" />
+          <img className="tear-paper" src="/images/tear-paper.webp" alt="" loading="lazy" />
         </div>
         <Footer />
       </main>
