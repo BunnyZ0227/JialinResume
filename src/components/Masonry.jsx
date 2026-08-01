@@ -28,14 +28,6 @@ const useMeasure = () => {
   return [ref, size];
 };
 
-const preloadImages = async urls => {
-  await Promise.all(urls.map(src => new Promise(resolve => {
-    const img = new Image();
-    img.src = src;
-    img.onload = img.onerror = () => resolve();
-  })));
-};
-
 const Masonry = ({
   items,
   ease = 'power3.out',
@@ -75,12 +67,7 @@ const Masonry = ({
   };
 
   useEffect(() => {
-    const imgItems = items.filter(i => i.img);
-    if (imgItems.length > 0) {
-      preloadImages(imgItems.map(i => i.img)).then(() => setImagesReady(true));
-    } else {
-      setImagesReady(true);
-    }
+    setImagesReady(true);
   }, [items]);
 
   // 微信内置浏览器会拦截静音自动播放，首次触摸时兜底播放
@@ -179,7 +166,8 @@ const Masonry = ({
                 loop
                 playsInline
                 webkit-playsinline=""
-                preload="auto"
+                preload="metadata"
+                poster={item.video.slice(0, -4) + '.jpg'}
                 src={item.video}
                 x5-playsinline=""
                 x5-video-player-type="h5"
