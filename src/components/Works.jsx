@@ -54,7 +54,7 @@ export default function Works() {
         <div className="work-featured-right">
           <div className="work-featured-video">
             <iframe
-              src="https://go.plvideo.cn/front/video/preview?vid=hdc06fc717ec81b228fbb9b33be63b34_h"
+              src="https://player.xinpianchang.com/?aid=13602603&mid=jlyzw0vKo3DQB198"
               allowFullScreen
               mozAllowFullScreen
               webkitAllowFullScreen

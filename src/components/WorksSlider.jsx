@@ -47,6 +47,18 @@ export default function WorksSlider({ work }) {
     track.scrollTo({ left: track.scrollLeft + offset, behavior: 'smooth' })
   }, [activeIndex])
 
+  // 初始定位到第 2、3 个视频中间，声明在居中 effect 之后以便覆盖挂载时的居中
+  useEffect(() => {
+    const track = scrollRef.current
+    if (!track) return
+    const c1 = track.children[1]
+    const c2 = track.children[2]
+    if (!c1 || !c2) return
+    const trackRect = track.getBoundingClientRect()
+    const mid = (c1.getBoundingClientRect().right + c2.getBoundingClientRect().left) / 2
+    track.scrollTo({ left: track.scrollLeft + (mid - trackRect.left - trackRect.width / 2), behavior: 'auto' })
+  }, [])
+
   return (
     <div
       className="works-slider-wrapper"
